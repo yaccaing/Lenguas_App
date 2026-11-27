@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Estudio minimalista de idiomas conversacionales y técnicos con asistente de voz adaptado por nivel.">
+  <meta name="theme-color" content="#F7F5F0">
+  <title>lingua. — Estudio Conversacional &amp; Técnico</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <!-- Minimalist Top Navigation -->
+  <header class="app-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <h1 class="brand-title">lingua<span class="brand-dot">.</span></h1>
+          <p class="brand-sub">Estudio de voz · Conversacional &amp; Técnico</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="stats-pill" aria-label="Progreso local">
+          <span class="stat-num" id="streak-count">0</span>
+          <span class="stat-sep">prácticas ·</span>
+          <span class="stat-num" id="avg-score">--%</span>
+        </div>
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="Cambiar tema claro u oscuro" title="Cambiar tema">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="container main-layout">
+    <!-- Harmonic Filter Bar (Figma Minimalist Style) -->
+    <section class="filter-bar" aria-label="Selección de idioma, nivel y enfoque">
+      <div class="filter-row">
+        <div class="lang-strip" id="lang-pills" role="tablist" aria-label="Idioma"></div>
+
+        <div class="filter-right">
+          <div class="level-strip" id="level-pills" role="group" aria-label="Nivel MCER">
+            <button type="button" class="lvl-btn" data-level="A1">A1</button>
+            <button type="button" class="lvl-btn" data-level="A2">A2</button>
+            <button type="button" class="lvl-btn active" data-level="B1">B1</button>
+            <button type="button" class="lvl-btn" data-level="B2">B2</button>
+            <button type="button" class="lvl-btn" data-level="C1">C1</button>
+          </div>
+
+          <div class="mode-switch" role="group" aria-label="Enfoque">
+            <button type="button" class="seg-btn active" data-mode="conversational">Conversacional</button>
+            <button type="button" class="seg-btn" data-mode="technical">Técnico</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="guidance-strip">
+        <span class="guidance-dot" aria-hidden="true"></span>
+        <p id="level-guidance" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- Primary Workspace -->
+    <div class="workspace-grid">
+      <!-- Left: Focus Phrase Studio -->
+      <section class="card studio-card" aria-labelledby="studio-heading">
+        <div class="card-head">
+          <div class="head-meta">
+            <span class="eyebrow" id="card-tag">Frase 1 de 2</span>
+            <h2 id="studio-heading" class="card-title">Estudio de Pronunciación</h2>
+          </div>
+          <div class="nav-arrows">
+            <button id="prev-card" class="icon-btn" type="button" aria-label="Frase anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button id="next-card" class="icon-btn" type="button" aria-label="Siguiente frase">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <article class="phrase-stage">
+          <p class="phrase-context" id="phrase-context"></p>
+          <p class="phrase-target" id="phrase-target" lang="en"></p>
+          <p class="phrase-phonetic" id="phrase-phonetic"></p>
+          <p class="phrase-translation" id="phrase-translation"></p>
+          <div class="tip-pill" id="phrase-tip"></div>
+        </article>
+
+        <!-- Primary Audio & Voice Actions -->
+        <div class="studio-controls">
+          <div class="action-trio">
+            <button id="listen-btn" class="btn btn-primary" type="button">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              <span>Escuchar</span>
+              <span class="btn-tag" id="speed-label">0.95x</span>
+            </button>
+
+            <button id="listen-slow-btn" class="btn btn-soft" type="button">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Despacio</span>
+            </button>
+
+            <button id="speak-btn" class="btn btn-accent" type="button">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>
+              <span id="speak-btn-label">Evaluar voz</span>
+            </button>
+          </div>
+
+          <!-- Minimal Audio Settings Row -->
+          <div class="audio-meta-row">
+            <label class="speed-control" for="speed-range">
+              <span>Ritmo</span>
+              <input id="speed-range" type="range" min="0.6" max="1.2" step="0.05" value="0.95">
+              <span class="mono-num" id="speed-value">0.95x</span>
+            </label>
+
+            <div class="voice-picker">
+              <label for="voice-select" class="sr-only">Voz del sistema</label>
+              <select id="voice-select" aria-label="Voz del sistema">
+                <option value="">Voz automática</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Area -->
+        <div class="feedback-surface" id="pronunciation-feedback" aria-live="polite">
+          <p class="muted">Escucha el modelo y pulsa <strong>Evaluar voz</strong> para recibir retroalimentación ajustada a tu nivel.</p>
+        </div>
+
+        <!-- Written Fallback -->
+        <details class="fallback-box">
+          <summary>Practicar escribiendo (si no usas micrófono)</summary>
+          <form id="manual-practice-form" class="pill-form">
+            <input id="manual-input" type="text" placeholder="Escribe la frase que escuchaste..." autocomplete="off">
+            <button class="btn btn-soft btn-sm" type="submit">Verificar</button>
+          </form>
+        </details>
+      </section>
+
+      <!-- Right: Voice Coach Dialogue -->
+      <section class="card coach-card" aria-labelledby="assistant-heading">
+        <div class="card-head">
+          <div class="head-meta">
+            <span class="eyebrow eyebrow-warm" id="assistant-mode-badge">Diálogo guiado</span>
+            <h2 id="assistant-heading" class="card-title">Asistente Conversacional</h2>
+          </div>
+          <button id="new-roleplay-btn" class="btn btn-ghost btn-sm" type="button">Nuevo turno</button>
+        </div>
+
+        <div id="chat-log" class="chat-log" aria-live="polite"></div>
+
+        <div class="coach-controls">
+          <div class="coach-voice-row">
+            <button id="assistant-mic-btn" class="btn btn-accent" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path></svg>
+              <span id="assistant-mic-label">Responder hablando</span>
+            </button>
+            <button id="assistant-repeat-btn" class="btn btn-soft" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              <span>Repetir</span>
+            </button>
+          </div>
+
+          <form id="assistant-text-form" class="pill-form">
+            <label for="assistant-text-input" class="sr-only">Escribe tu respuesta al asistente</label>
+            <input id="assistant-text-input" type="text" placeholder="O responde escribiendo aquí..." autocomplete="off">
+            <button class="btn btn-primary btn-sm" type="submit">Enviar</button>
+          </form>
+
+          <p class="hint-line" id="assistant-hint"></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Minimal Lesson Index -->
+    <section class="card index-card" aria-labelledby="list-heading">
+      <div class="index-head">
+        <h2 id="list-heading" class="index-title">Lecciones en este nivel</h2>
+        <span class="muted small" id="storage-size-note">Memoria local: 0.00 KB</span>
+      </div>
+      <div id="phrase-pills" class="phrase-pills"></div>
+    </section>
+  </main>
+
+  <!-- Minimalist Legal Footer -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">
+        © <span id="year-now">2026</span> lingua. · Contenido educativo original · Sin rastreadores externos
+      </p>
+      <nav class="footer-links" aria-label="Información legal">
+        <button type="button" class="link-btn" data-legal="privacy">Privacidad</button>
+        <button type="button" class="link-btn" data-legal="terms">Términos</button>
+        <button type="button" class="link-btn" data-legal="cookies">Cookies y Audio</button>
+        <button type="button" class="link-btn" data-legal="ip">Autoría</button>
+        <button type="button" id="reset-data-btn" class="link-btn danger-link">Borrar datos locales</button>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Minimal Consent Toast -->
+  <aside id="consent-banner" class="consent-banner hidden" role="dialog" aria-label="Aviso de privacidad y micrófono">
+    <div class="consent-content">
+      <p>
+        <strong>Privacidad local:</strong> Guardamos tu progreso solo en este dispositivo (<code>localStorage</code>). El micrófono es opcional y únicamente se activa cuando lo pulsas.
+      </p>
+      <div class="consent-btns">
+        <button type="button" class="link-btn" data-legal="privacy">Detalles</button>
+        <button type="button" id="accept-consent-btn" class="btn btn-primary btn-sm">Aceptar</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Legal Modal -->
+  <dialog id="legal-modal" class="legal-modal" aria-labelledby="legal-modal-title">
+    <div class="modal-head">
+      <h2 id="legal-modal-title">Información Legal</h2>
+      <button type="button" id="close-legal-btn" class="icon-btn" aria-label="Cerrar ventana legal">✕</button>
+    </div>
+    <div class="modal-tabs" role="tablist">
+      <button type="button" class="tab-btn active" data-legal-tab="privacy">Privacidad</button>
+      <button type="button" class="tab-btn" data-legal-tab="terms">Términos</button>
+      <button type="button" class="tab-btn" data-legal-tab="cookies">Cookies y Audio</button>
+      <button type="button" class="tab-btn" data-legal-tab="ip">Autoría y Accesibilidad</button>
+    </div>
+    <div id="legal-body" class="modal-body"></div>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
